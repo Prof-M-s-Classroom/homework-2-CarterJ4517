@@ -80,32 +80,35 @@ class LinkedList:
 # Make sure to reuse existing function for the correct edge cases for both TODOs
 # Write appropriate test function below to test for the new functions.
 
-    def insertatindex(self, value, index):
+    def insertatindex(self, index, value):
         new_node = Node(value)
-        if self.length == 0:
+        if index < 0 or index > self.length:
+            return False
+        elif self.length == 0:
             self.head = new_node
             self.tail = new_node
-        elif index < 0 or index > self.length:
-            return False
+        elif index == 0:
+            return self.prepend(value)
+        elif index == self.length:
+            return self.append(value)
         else:
             pre = self.head
             temp = self.head
             for i in range(index):
                 pre = temp
                 temp = temp.next
-            if index != 0:
-                pre.next = new_node
-            else:
-                self.head = new_node
+            pre.next = new_node
             new_node.next = temp
-            if index == self.length:
-                self.tail = new_node
             self.length += 1
             return True
 
     def deleteatindex(self, index):
-        temp = self.head
+        if self.length == 0:
+            return None
+        elif index < 0 or index > self.length:
+            return self.head
 
+s0 = Spaceship("TEST", 300)
 s1 = Spaceship("Voyager", 300)
 s2 = Spaceship("Enterprise", 300)
 s3 = Spaceship("Atlantis", 300)
@@ -117,5 +120,5 @@ mylinkedlist.append(s2)
 mylinkedlist.append(s3)
 mylinkedlist.prepend(s4)
 mylinkedlist.prepend(s5)
-mylinkedlist.insertatindex(s1,1)
+mylinkedlist.insertatindex(0, s0)
 mylinkedlist.print_list()
