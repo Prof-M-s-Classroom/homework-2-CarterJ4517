@@ -80,18 +80,19 @@ class LinkedList:
 # Make sure to reuse existing function for the correct edge cases for both TODOs
 # Write appropriate test function below to test for the new functions.
 
+    # insertatindex: creates a new node with given value and inserts it at given index
     def insertatindex(self, index, value):
         new_node = Node(value)
-        if index < 0 or index > self.length:
+        if index < 0 or index > self.length:    # edge case: given index out of bounds
             return False
-        elif self.length == 0:
+        elif self.length == 0:                  # edge case: list begins with no nodes
             self.head = new_node
             self.tail = new_node
-        elif index == 0:
+        elif index == 0:                        # edge case: given index is at list beginning (prepends)
             return self.prepend(value)
-        elif index == self.length:
+        elif index == self.length:              # edge case: given index is at list end (appends)
             return self.append(value)
-        else:
+        else:                                   # iterates to given index and inserts new data
             pre = self.head
             temp = self.head
             for i in range(index):
@@ -99,19 +100,20 @@ class LinkedList:
                 temp = temp.next
             pre.next = new_node
             new_node.next = temp
-            self.length += 1
-            return True
+        self.length += 1
+        return True
 
+    # deleteatindex: removes the node at a given index
     def deleteatindex(self, index):
-        if index < 0 or index >= self.length:
+        if index < 0 or index >= self.length:   # edge case: given index is out of bounds
             return self.head
-        elif self.length == 0:
+        elif self.length == 0:                  # edge case: list is empty
             return None
-        elif index == 0:
+        elif index == 0:                        # edge case: index is at beginning of list (deletes first node)
             return self.delfirst()
-        elif index == self.length-1:
+        elif index == self.length-1:            # edge case: index is at end of list (deletes last node)
             return self.dellast()
-        else:
+        else:                                   # iterates to given index and removes corresponding node
             pre = self.head
             temp = self.head
             for i in range(index):
