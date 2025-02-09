@@ -1,4 +1,4 @@
-import Spaceship
+from Spaceship import Spaceship
 
 
 class Node:
@@ -80,10 +80,20 @@ class LinkedList:
 # Make sure to reuse existing function for the correct edge cases for both TODOs
 # Write appropriate test function below to test for the new functions.
 
-    def insertatindex(self):
-        temp = self.head
+    def insertatindex(self, value, index):
+        new_node = Node(value)
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        elif index < 0 | index > self.length:
+            return False
+        else:
+            temp = self.head
+            for i in range(self.length):
+                temp = temp.next
+            temp.next = new_node
 
-    def deleteatindex(self):
+    def deleteatindex(self, index):
         temp = self.head
 
 s1 = Spaceship("Voyager", 300)
