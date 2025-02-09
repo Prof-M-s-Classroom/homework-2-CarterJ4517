@@ -103,10 +103,25 @@ class LinkedList:
             return True
 
     def deleteatindex(self, index):
-        if self.length == 0:
-            return None
-        elif index < 0 or index > self.length:
+        if index < 0 or index >= self.length:
             return self.head
+        elif self.length == 0:
+            return None
+        elif index == 0:
+            return self.delfirst()
+        elif index == self.length-1:
+            return self.dellast()
+        else:
+            pre = self.head
+            temp = self.head
+            for i in range(index):
+                pre = temp
+                temp = temp.next
+            pre.next = temp.next
+            self.length -= 1
+            return temp
+
+# Test code:
 
 s0 = Spaceship("TEST", 300)
 s1 = Spaceship("Voyager", 300)
@@ -120,5 +135,20 @@ mylinkedlist.append(s2)
 mylinkedlist.append(s3)
 mylinkedlist.prepend(s4)
 mylinkedlist.prepend(s5)
-mylinkedlist.insertatindex(0, s0)
+mylinkedlist.print_list()
+print()
+deleted = mylinkedlist.insertatindex(1,s0)
+mylinkedlist.print_list()
+print()
+
+mylinkedlist = LinkedList(s1)
+mylinkedlist.append(s2)
+mylinkedlist.append(s3)
+mylinkedlist.prepend(s4)
+mylinkedlist.prepend(s5)
+mylinkedlist.print_list()
+print()
+deleted = mylinkedlist.deleteatindex(0)
+print(deleted)
+print()
 mylinkedlist.print_list()
