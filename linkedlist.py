@@ -85,13 +85,24 @@ class LinkedList:
         if self.length == 0:
             self.head = new_node
             self.tail = new_node
-        elif index < 0 | index > self.length:
+        elif index < 0 or index > self.length:
             return False
         else:
+            pre = self.head
             temp = self.head
-            for i in range(self.length):
+            for i in range(index):
+                pre = temp
                 temp = temp.next
-            temp.next = new_node
+            if index != 0:
+                pre.next = new_node
+            else:
+                self.head = new_node
+            if index != self.length:
+                new_node.next = temp
+            else:
+                self.tail = new_node
+            self.length += 1
+            return True
 
     def deleteatindex(self, index):
         temp = self.head
@@ -107,4 +118,5 @@ mylinkedlist.append(s2)
 mylinkedlist.append(s3)
 mylinkedlist.prepend(s4)
 mylinkedlist.prepend(s5)
+mylinkedlist.insertatindex(s1,-1)
 mylinkedlist.print_list()
