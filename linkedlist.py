@@ -97,9 +97,8 @@ class LinkedList:
                 pre.next = new_node
             else:
                 self.head = new_node
-            if index != self.length:
-                new_node.next = temp
-            else:
+            new_node.next = temp
+            if index == self.length:
                 self.tail = new_node
             self.length += 1
             return True
@@ -118,5 +117,5 @@ mylinkedlist.append(s2)
 mylinkedlist.append(s3)
 mylinkedlist.prepend(s4)
 mylinkedlist.prepend(s5)
-mylinkedlist.insertatindex(s1,-1)
+mylinkedlist.insertatindex(s1,1)
 mylinkedlist.print_list()
